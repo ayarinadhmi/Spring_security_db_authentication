@@ -1,4 +1,4 @@
-package com.ayari.service;
+package com.ayari.security.service;
 
 import com.ayari.model.Role;
 import com.ayari.model.User;
@@ -42,5 +42,11 @@ public class UserService {
         user.setRoles(new HashSet<Role>(Arrays.asList(userRole)));
         return userRepository.save(user);
     }
-
+    
+   public void AddRoleToUser(String userName, String roleName ) {
+	   User u = userRepository.findByUserName(userName);
+	   Role r = roleRepository.findByRole(roleName);
+	   u.getRoles().add(r);
+	   
+   }
 }
